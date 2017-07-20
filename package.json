@@ -1,0 +1,45 @@
+{
+  "name": "nodemon-webpack-plugin",
+  "version": "0.0.0",
+  "description": "A webpack plugin that starts and reloads a server using Nodemon.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && babel src/ --out-dir dist/",
+    "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Izhaki/nodemon-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "nodemon",
+    "plugin",
+    "server",
+    "start",
+    "watch",
+    "restart"
+  ],
+  "author": "Roey Izhaki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Izhaki/nodemon-webpack-plugin.git/issues"
+  },
+  "homepage": "https://github.com/Izhaki/nodemon-webpack-plugin.git",
+  "dependencies": {
+    "chalk": "2.0.1",
+    "nodemon": "1.11.0"
+  },
+  "peerDependencies": {
+    "webpack": "^2 || ^3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "rimraf": "^2.6.1"
+  }
+}

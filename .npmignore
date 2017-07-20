@@ -1,0 +1,7 @@
+.git
+.gitignore
+npm-debug.log
+.DS_Store
+.eslintrc
+.editorconfig
+.babelrc
