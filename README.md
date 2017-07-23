@@ -1,8 +1,13 @@
 # Nodemon Webpack Plugin
 
+[![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
+[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Izhaki/nodemon-webpack-plugin/master/LICENSE)
+
+
 In your webpack configuration, assume a module with a single entry/output representing a node server.
 
-When added, the plugin will run [Nodemon](https://nodemon.io/) on that server.
+When added, the plugin will watch and restart that server upon changes using [Nodemon](https://nodemon.io/).
 
 **Zero configuration:**
 - Monitoring will only apply when webpack is in watch mode (ie, `--watch`).
