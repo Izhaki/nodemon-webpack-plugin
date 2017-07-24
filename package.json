@@ -1,7 +1,7 @@
 {
   "name": "nodemon-webpack-plugin",
   "version": "0.1.1",
-  "description": "A webpack plugin that starts and reloads a server using Nodemon.",
+  "description": "A zero-configuration webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
