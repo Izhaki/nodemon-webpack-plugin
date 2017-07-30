@@ -19,7 +19,8 @@ const nodemonLog = ( filename ) => ( msg, colour ) => () => console.log(
 
 module.exports = class {
 
-    constructor() {
+    constructor(options) {
+        this.options = options;
         this.isWebpackWatching = false
         this.isNodemonRunning = false
     }
@@ -42,13 +43,17 @@ module.exports = class {
     }
 
     startMonitoring( filename, displayname ) {
-        const nodemonOptions = {
-            script: filename,
+        if (!this.options) {
+            this.options = {};   
+        }
+
+        if (!this.options.script) {
+            this.options.script = filename;
         }
 
         const log = nodemonLog( displayname )
 
-        nodemon( nodemonOptions )
+        nodemon( this.options )
             .on( 'start', log( 'Started:', 'green' ) )
             .on( 'crash', log( 'Crashed:', 'red' ) )
             .on( 'restart', log( 'Restarting:', 'cyan' ) )
