@@ -1,7 +1,7 @@
 'use strict'
 
-const nodemon = require( 'nodemon' )
 const path = require( 'path' )
+const nodemon = require( 'nodemon' )
 const chalk = require( 'chalk' )
 
 const getOutputFileMeta = ( compilation ) => {
@@ -14,7 +14,7 @@ const getOutputFileMeta = ( compilation ) => {
 }
 
 const nodemonLog = ( filename ) => ( msg, colour ) => () => console.log(
-    chalk[ colour ](`[ Nodemon ] ${ msg } ${ filename }`)
+    chalk[ colour ]( `[ Nodemon ] ${ msg } ${ filename }` )
 )
 
 module.exports = class {
@@ -25,7 +25,6 @@ module.exports = class {
     }
 
     apply( compiler ) {
-
         compiler.plugin( 'after-emit', ( compilation, callback ) => {
             if ( this.isWebpackWatching && !this.isNodemonRunning ) {
                 const { absoluteFileName, relativeFileName } = getOutputFileMeta( compilation )
@@ -38,7 +37,6 @@ module.exports = class {
             this.isWebpackWatching = true
             callback()
         })
-
     }
 
     startMonitoring( filename, displayname ) {
@@ -49,15 +47,23 @@ module.exports = class {
 
         const log = nodemonLog( displayname )
 
-        nodemon( nodemonOptions )
+        const monitor = nodemon( nodemonOptions )
+
+        monitor
             .on( 'start', log( 'Started:', 'green' ) )
             .on( 'crash', log( 'Crashed:', 'red' ) )
             .on( 'restart', log( 'Restarting:', 'cyan' ) )
             .once( 'quit', () => {
                 log( 'Stopped:', 'cyan' )()
-                process.exit() // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             })
 
         this.isNodemonRunning = true
+
+        // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
+        process.on( 'SIGINT', () => {
+            monitor.once( 'exit', () => {
+                process.exit()
+            })
+        })
     }
 }

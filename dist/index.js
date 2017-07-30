@@ -4,8 +4,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var nodemon = require('nodemon');
 var path = require('path');
+var nodemon = require('nodemon');
 var chalk = require('chalk');
 
 var getOutputFileMeta = function getOutputFileMeta(compilation) {
@@ -58,6 +58,7 @@ module.exports = function () {
         key: 'startMonitoring',
         value: function startMonitoring(filename, displayname) {
             var nodemonOptions = {
+                script: filename,
                 watch: filename
             };
 
@@ -65,10 +66,14 @@ module.exports = function () {
 
             nodemon(nodemonOptions).on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
                 log('Stopped:', 'cyan')();
-                process.exit(); // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
+                // So process.exit() // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             });
 
             this.isNodemonRunning = true;
+
+            process.on('SIGINT', function () {
+                console.log('Got SIGINT');
+            });
         }
     }]);
 
