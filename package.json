@@ -4,7 +4,7 @@
   "description": "A zero-configuration webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "webpack --config test/webpack.config.js --watch",
     "build": "rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/"
   },
@@ -39,7 +39,12 @@
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
+    "babel-loader": "7.1.1",
     "babel-preset-env": "1.6.0",
-    "rimraf": "2.6.1"
+    "express": "4.15.3",
+    "rimraf": "2.6.1",
+    "webpack": "3.4.1",
+    "webpack-node-externals": "1.6.0"
   }
 }
