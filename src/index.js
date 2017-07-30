@@ -43,7 +43,7 @@ module.exports = class {
 
     startMonitoring( filename, displayname ) {
         const nodemonOptions = {
-            watch: filename,
+            script: filename,
         }
 
         const log = nodemonLog( displayname )
