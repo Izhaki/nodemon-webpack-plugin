@@ -26,9 +26,10 @@ var nodemonLog = function nodemonLog(filename) {
 };
 
 module.exports = function () {
-    function _class() {
+    function _class(nodemonOptions) {
         _classCallCheck(this, _class);
 
+        this.nodemonOptions = nodemonOptions;
         this.isWebpackWatching = false;
         this.isNodemonRunning = false;
     }
@@ -57,13 +58,21 @@ module.exports = function () {
     }, {
         key: 'startMonitoring',
         value: function startMonitoring(filename, displayname) {
-            var nodemonOptions = {
-                watch: filename
-            };
+            if (!this.nodemonOptions) {
+                this.nodemonOptions = {};
+            }
+
+            if (!this.nodemonOptions.script) {
+                this.nodemonOptions.script = filename;
+            }
+
+            if (!this.nodemonOptions.watch) {
+                this.nodemonOptions.watch = filename;
+            }
 
             var log = nodemonLog(displayname);
 
-            nodemon(nodemonOptions).on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
+            nodemon(this.nodemonOptions).on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
                 log('Stopped:', 'cyan')();
                 process.exit(); // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             });
