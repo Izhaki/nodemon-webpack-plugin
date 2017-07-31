@@ -38,7 +38,11 @@ module.exports = {
         path: path.resolve('./dist'),
         filename: 'server.js',    },
     plugins: [
-        new NodemonPlugin()
+        new NodemonPlugin({
+            quiet: true,
+            ignore: '*.jpg',
+            anotherNodemonOption: 'value'
+        })
     ]
 }
 ```
