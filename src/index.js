@@ -3,6 +3,7 @@
 const path = require( 'path' )
 const nodemon = require( 'nodemon' )
 const chalk = require( 'chalk' )
+const _ = require( 'lodash' )
 
 const getOutputFileMeta = ( compilation ) => {
     const outputFilename = compilation.outputOptions.filename
@@ -19,9 +20,10 @@ const nodemonLog = ( filename ) => ( msg, colour ) => () => console.log(
 
 module.exports = class {
 
-    constructor() {
+    constructor( nodemonOptions ) {
         this.isWebpackWatching = false
         this.isNodemonRunning = false
+        this.nodemonCustomOptions = nodemonOptions
     }
 
     apply( compiler ) {
@@ -40,10 +42,10 @@ module.exports = class {
     }
 
     startMonitoring( filename, displayname ) {
-        const nodemonOptions = {
+        const nodemonOptions = _.assign({
             script: filename,
             watch: filename,
-        }
+        }, this.nodemonCustomOptions )
 
         const log = nodemonLog( displayname )
 
