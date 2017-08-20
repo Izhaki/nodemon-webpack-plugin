@@ -34,6 +34,7 @@
   "homepage": "https://github.com/Izhaki/nodemon-webpack-plugin.git",
   "dependencies": {
     "chalk": "2.0.1",
+    "lodash": "^4.17.4",
     "nodemon": "1.11.0"
   },
   "peerDependencies": {
