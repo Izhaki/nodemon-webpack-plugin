@@ -27,7 +27,9 @@ const config = {
         }],
     },
     plugins: [
-        new NodemonPlugin(),
+        new NodemonPlugin({
+            args: [ '--test', 'true' ],
+        }),
     ],
 }
 
