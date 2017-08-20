@@ -27,7 +27,13 @@ const config = {
         }],
     },
     plugins: [
-        new NodemonPlugin(),
+        new NodemonPlugin({
+            argv: [
+                "argvOne",
+                "argvTwo",
+                "argvThree"
+            ]
+        }),
     ],
 }
 
