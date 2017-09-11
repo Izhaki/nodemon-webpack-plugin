@@ -37,10 +37,11 @@ module.exports = {
     entry: './src/server.js',
     output: {
         path: path.resolve('./dist'),
-        filename: 'server.js',    },
+        filename: 'server.js',
+    },
     plugins: [
-        new NodemonPlugin()
-    ]
+        new NodemonPlugin(),
+    ],
 }
 ```
 
