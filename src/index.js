@@ -3,9 +3,18 @@
 const path = require( 'path' )
 const nodemon = require( 'nodemon' )
 const chalk = require( 'chalk' )
+const R = require( 'ramda' )
+
+const isMapFile = R.endsWith( '.map' )
+const getOutputFileName = R.pipe(
+    R.prop( 'assets' ),
+    R.keys,
+    R.reject( isMapFile ),
+    R.head
+)
 
 const getOutputFileMeta = ( compilation ) => {
-    const outputFilename = compilation.outputOptions.filename
+    const outputFilename = getOutputFileName( compilation )
     const asset = compilation.assets[ outputFilename ]
     const absoluteFileName = asset.existsAt
     const relativeFileName = path.relative( '', absoluteFileName )

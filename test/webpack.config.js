@@ -7,11 +7,14 @@ const config = {
 
     entry: './test/server.js',
 
+    // devtool: 'cheap-source-map',
+
     externals: [ nodeExternals() ],
 
     output: {
         path: path.resolve( './test/dist' ),
         filename: 'server.js',
+        // filename: '[name]-[hash].js',
     },
 
     module: {
