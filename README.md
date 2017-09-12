@@ -29,7 +29,6 @@ $ yarn add nodemon-webpack-plugin --dev
 ```
 
 ## Usage
-
 ```javascript
 const NodemonPlugin = require( 'nodemon-webpack-plugin' )
 
@@ -70,4 +69,25 @@ Child
 [ Nodemon ] Started: dist/server.js
 
 [at-loader] Ok, 0.657 sec.
+```
+
+### Passing Parameters to Entry Script
+```javascript
+const NodemonPlugin = require( 'nodemon-webpack-plugin' )
+
+module.exports = {
+    entry: './src/server.js',
+    output: {
+        path: path.resolve('./dist'),
+        filename: 'server.js',    },
+    plugins: [
+        new NodemonPlugin({
+            argv: [
+                "parameterOne",
+                "parameterTwo",
+                "parameterThree"
+            ]
+        })
+    ]
+}
 ```

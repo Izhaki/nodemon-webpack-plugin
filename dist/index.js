@@ -26,9 +26,10 @@ var nodemonLog = function nodemonLog(filename) {
 };
 
 module.exports = function () {
-    function _class() {
+    function _class(config) {
         _classCallCheck(this, _class);
 
+        this.args = config.argv;
         this.isWebpackWatching = false;
         this.isNodemonRunning = false;
     }
@@ -59,20 +60,25 @@ module.exports = function () {
         value: function startMonitoring(filename, displayname) {
             var nodemonOptions = {
                 script: filename,
-                watch: filename
+                watch: filename,
+                args: this.args
             };
 
             var log = nodemonLog(displayname);
 
-            nodemon(nodemonOptions).on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
+            var monitor = nodemon(nodemonOptions);
+
+            monitor.on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
                 log('Stopped:', 'cyan')();
-                // So process.exit() // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             });
 
             this.isNodemonRunning = true;
 
+            // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             process.on('SIGINT', function () {
-                console.log('Got SIGINT');
+                monitor.once('exit', function () {
+                    process.exit();
+                });
             });
         }
     }]);

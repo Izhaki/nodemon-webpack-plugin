@@ -28,7 +28,8 @@ const nodemonLog = ( filename ) => ( msg, colour ) => () => console.log(
 
 module.exports = class {
 
-    constructor() {
+    constructor(config) {
+        this.args = config.argv
         this.isWebpackWatching = false
         this.isNodemonRunning = false
     }
@@ -52,6 +53,7 @@ module.exports = class {
         const nodemonOptions = {
             script: filename,
             watch: filename,
+            args: this.args
         }
 
         const log = nodemonLog( displayname )
