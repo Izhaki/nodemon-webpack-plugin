@@ -2,7 +2,6 @@
 
 const path = require( 'path' )
 const nodemon = require( 'nodemon' )
-const chalk = require( 'chalk' )
 const R = require( 'ramda' )
 
 const isMapFile = R.endsWith( '.map' )
@@ -22,13 +21,10 @@ const getOutputFileMeta = ( compilation ) => {
     return { absoluteFileName, relativeFileName }
 }
 
-const nodemonLog = ( filename ) => ( msg, colour ) => () => console.log(
-    chalk[ colour ]( `[ Nodemon ] ${ msg } ${ filename }` )
-)
-
 module.exports = class {
 
-    constructor() {
+    constructor( nodemonOptions ) {
+        this.nodemonOptions = nodemonOptions
         this.isWebpackWatching = false
         this.isNodemonRunning = false
     }
@@ -36,8 +32,8 @@ module.exports = class {
     apply( compiler ) {
         compiler.plugin( 'after-emit', ( compilation, callback ) => {
             if ( this.isWebpackWatching && !this.isNodemonRunning ) {
-                const { absoluteFileName, relativeFileName } = getOutputFileMeta( compilation )
-                this.startMonitoring( absoluteFileName, relativeFileName )
+                const { relativeFileName } = getOutputFileMeta( compilation )
+                this.startMonitoring( relativeFileName )
             }
             callback()
         })
@@ -48,23 +44,17 @@ module.exports = class {
         })
     }
 
-    startMonitoring( filename, displayname ) {
-        const nodemonOptions = {
-            script: filename,
-            watch: filename,
+    startMonitoring( relativeFileName ) {
+        const nodemonOptionsDefaults = {
+            script: relativeFileName,
+            watch: relativeFileName,
         }
 
-        const log = nodemonLog( displayname )
+        const nodemonOptions = R.merge( nodemonOptionsDefaults, this.nodemonOptions )
 
         const monitor = nodemon( nodemonOptions )
 
-        monitor
-            .on( 'start', log( 'Started:', 'green' ) )
-            .on( 'crash', log( 'Crashed:', 'red' ) )
-            .on( 'restart', log( 'Restarting:', 'cyan' ) )
-            .once( 'quit', () => {
-                log( 'Stopped:', 'cyan' )()
-            })
+        monitor.on( 'log', ({ colour: colouredMessage }) => console.log( colouredMessage ) )
 
         this.isNodemonRunning = true
 
