@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/Izhaki/nodemon-webpack-plugin.git",
   "dependencies": {
-    "chalk": "2.0.1",
     "nodemon": "1.11.0",
     "ramda": "0.24.1"
   },
@@ -45,7 +44,9 @@
     "babel-core": "6.25.0",
     "babel-loader": "7.1.1",
     "babel-preset-env": "1.6.0",
+    "copy-webpack-plugin": "^4.0.1",
     "express": "4.15.3",
+    "i18n": "^0.8.3",
     "release": "^1.2.4",
     "rimraf": "2.6.1",
     "webpack": "3.4.1",

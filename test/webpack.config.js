@@ -1,9 +1,14 @@
 const path = require( 'path' )
 const nodeExternals = require( 'webpack-node-externals' )
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' )
 const NodemonPlugin = require( '../src' )
 
 const config = {
     target: 'node',
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
 
     entry: './test/server.js',
 
@@ -30,7 +35,12 @@ const config = {
         }],
     },
     plugins: [
-        new NodemonPlugin(),
+        new NodemonPlugin({
+            // verbose: true,
+            // watch: path.resolve( './test/dist' ),
+            // ignore: [ '*.json' ],
+        }),
+        new CopyWebpackPlugin( [{ from: './test/locales', to: 'locales' }] ),
     ],
 }
 

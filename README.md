@@ -5,14 +5,9 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Izhaki/nodemon-webpack-plugin/master/LICENSE)
 
+Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file, but only when webpack is in watch mode (ie, `--watch`).
 
-In your webpack configuration, assumes a module with a single entry/output representing a node server.
-
-The plugin will watch and restart that server upon changes using [Nodemon](https://nodemon.io/).
-
-**Zero configuration:**
-- Monitoring will only apply when webpack is in watch mode (ie, `--watch`).
-- The plugin only watches the output file.
+Saves the need for installing, configuring and running Nodemon as a seperate process.
 
 ## Installation
 
@@ -26,6 +21,45 @@ $ npm install nodemon-webpack-plugin --save-dev
 
 ```shell
 $ yarn add nodemon-webpack-plugin --dev
+```
+
+## Modes
+
+### Zero-config mode
+
+```javascript
+new NodemonPlugin()
+```
+
+Only watches the output file.
+
+### With config
+
+Allows a [Nodemon config object](https://github.com/remy/nodemon#config-files) to override and extend the default config:
+
+```
+{
+    script: <output file>,
+    watch:  <output file>,
+}
+```
+
+For example:
+
+```javascript
+new NodemonPlugin({
+    /// Arguments to pass to the script being restarted
+    args: ['demo'],
+
+    // What to watch
+    watch: path.resolve('./dist'),
+
+    // Files to ignore
+    ignore: ['*.js.map'],
+
+    // Provide detailed log
+    verbose: true,
+})
 ```
 
 ## Usage
@@ -54,20 +88,13 @@ $ webpack --watch
 ## Example output
 
 ```shell
-[at-loader] Checking started in a separate process...
-Hash: 78d6d3559b43851d1e49
-Version: webpack 3.3.0
-Child
-    Hash: 78d6d3559b43851d1e49
-    Time: 2405ms
-            Asset     Size  Chunks             Chunk Names
-        server.js  47.9 kB       0  [emitted]  main
-    server.js.map  35.5 kB       0  [emitted]  main
-       [9] ./src/server/server.ts 789 bytes {0} [built]
-      [31] ./src/client/Home.jsx 2.84 kB {0} [built]
-        + 44 hidden modules
-[ Nodemon ] Restarting: dist/server.js
-[ Nodemon ] Started: dist/server.js
-
-[at-loader] Ok, 0.657 sec.
+Hash: 366cbbbab13237b29593
+Version: webpack 3.4.1
+Time: 50ms
+    Asset     Size  Chunks             Chunk Names
+server.js  3.17 kB       0  [emitted]  main
+   [0] ./test/server.js 388 bytes {0} [built]
+    + 3 hidden modules
+[nodemon] restarting due to changes...
+[nodemon] starting `node test/dist/server.js`
 ```
