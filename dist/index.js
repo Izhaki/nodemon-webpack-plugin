@@ -6,10 +6,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var path = require('path');
 var nodemon = require('nodemon');
-var chalk = require('chalk');
+var R = require('ramda');
+
+var isMapFile = R.endsWith('.map');
+var getOutputFileName = R.pipe(R.prop('assets'), R.keys, R.reject(isMapFile), R.head);
 
 var getOutputFileMeta = function getOutputFileMeta(compilation) {
-    var outputFilename = compilation.outputOptions.filename;
+    var outputFilename = getOutputFileName(compilation);
     var asset = compilation.assets[outputFilename];
     var absoluteFileName = asset.existsAt;
     var relativeFileName = path.relative('', absoluteFileName);
@@ -17,18 +20,11 @@ var getOutputFileMeta = function getOutputFileMeta(compilation) {
     return { absoluteFileName, relativeFileName };
 };
 
-var nodemonLog = function nodemonLog(filename) {
-    return function (msg, colour) {
-        return function () {
-            return console.log(chalk[colour](`[ Nodemon ] ${msg} ${filename}`));
-        };
-    };
-};
-
 module.exports = function () {
-    function _class() {
+    function _class(nodemonOptions) {
         _classCallCheck(this, _class);
 
+        this.nodemonOptions = nodemonOptions;
         this.isWebpackWatching = false;
         this.isNodemonRunning = false;
     }
@@ -41,10 +37,9 @@ module.exports = function () {
             compiler.plugin('after-emit', function (compilation, callback) {
                 if (_this.isWebpackWatching && !_this.isNodemonRunning) {
                     var _getOutputFileMeta = getOutputFileMeta(compilation),
-                        absoluteFileName = _getOutputFileMeta.absoluteFileName,
                         relativeFileName = _getOutputFileMeta.relativeFileName;
 
-                    _this.startMonitoring(absoluteFileName, relativeFileName);
+                    _this.startMonitoring(relativeFileName);
                 }
                 callback();
             });
@@ -56,23 +51,28 @@ module.exports = function () {
         }
     }, {
         key: 'startMonitoring',
-        value: function startMonitoring(filename, displayname) {
-            var nodemonOptions = {
-                script: filename,
-                watch: filename
+        value: function startMonitoring(relativeFileName) {
+            var nodemonOptionsDefaults = {
+                script: relativeFileName,
+                watch: relativeFileName
             };
 
-            var log = nodemonLog(displayname);
+            var nodemonOptions = R.merge(nodemonOptionsDefaults, this.nodemonOptions);
 
-            nodemon(nodemonOptions).on('start', log('Started:', 'green')).on('crash', log('Crashed:', 'red')).on('restart', log('Restarting:', 'cyan')).once('quit', function () {
-                log('Stopped:', 'cyan')();
-                // So process.exit() // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
+            var monitor = nodemon(nodemonOptions);
+
+            monitor.on('log', function (_ref) {
+                var colouredMessage = _ref.colour;
+                return console.log(colouredMessage);
             });
 
             this.isNodemonRunning = true;
 
+            // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
             process.on('SIGINT', function () {
-                console.log('Got SIGINT');
+                monitor.once('exit', function () {
+                    process.exit();
+                });
             });
         }
     }]);

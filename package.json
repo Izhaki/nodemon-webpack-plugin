@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "xo",
-    "test": "npm run lint && webpack --config test/webpack.config.js --watch",
-    "build": "rimraf dist/ && babel src/ --out-dir dist/",
+    "test": "npm run build && webpack --config test/webpack.config.js --watch",
+    "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "postversion": "git push && git push --tags && release"
   },
