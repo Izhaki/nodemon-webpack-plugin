@@ -1166,7 +1166,7 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
-copy-webpack-plugin@^4.0.1:
+copy-webpack-plugin@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-4.0.1.tgz#9728e383b94316050d0c7463958f2b85c0aa8200"
   dependencies:
@@ -2442,7 +2442,7 @@ https-proxy-agent@^1.0.0:
     debug "2"
     extend "3"
 
-i18n@^0.8.3:
+i18n@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/i18n/-/i18n-0.8.3.tgz#2d8cf1c24722602c2041d01ba6ae5eaa51388f0e"
   dependencies:
@@ -4039,7 +4039,7 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-release@^1.2.4:
+release@1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/release/-/release-1.2.4.tgz#0c47fe0f0179db381255c9fe08dcf91fc187bdd3"
   dependencies:
@@ -5091,7 +5091,7 @@ xo-init@^0.5.0:
     the-argv "^1.0.0"
     write-pkg "^2.0.0"
 
-xo@^0.18.2:
+xo@0.18.2:
   version "0.18.2"
   resolved "https://registry.yarnpkg.com/xo/-/xo-0.18.2.tgz#92a42eb02a4fb149dfea5518021914f5aac84ff0"
   dependencies:
