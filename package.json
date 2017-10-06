@@ -1,11 +1,11 @@
 {
   "name": "nodemon-webpack-plugin",
   "version": "0.1.4",
-  "description": "A zero-configuration webpack plugin that starts and reloads a server using Nodemon.",
+  "description": "A webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "xo",
-    "test": "npm run build && webpack --config test/webpack.config.js --watch",
+    "test": "cucumberjs",
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "postversion": "git push && git push --tags && release"
@@ -44,11 +44,15 @@
     "babel-core": "6.25.0",
     "babel-loader": "7.1.1",
     "babel-preset-env": "1.6.0",
-    "copy-webpack-plugin": "4.0.1",
+    "child-process-promise": "2.2.1",
+    "cucumber": "3.0.2",
     "express": "4.15.3",
-    "i18n": "0.8.3",
+    "fs-extra": "4.0.2",
+    "mustache": "2.3.0",
     "release": "1.2.4",
     "rimraf": "2.6.1",
+    "tmp": "^0.0.33",
+    "uuid": "3.1.0",
     "webpack": "3.4.1",
     "webpack-node-externals": "1.6.0",
     "xo": "0.18.2"
@@ -69,6 +73,10 @@
             "{}"
           ]
         }
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
       ],
       "object-curly-spacing": [
         "error",
@@ -94,8 +102,12 @@
         "error",
         "always-multiline"
       ],
+      "new-cap": "off",
+      "prefer-arrow-callback": "off",
+      "capitalized-comments": "off",
       "unicorn/no-process-exit": "error",
-      "capitalized-comments": "off"
+      "unicorn/filename-case": "off",
+      "import/prefer-default-export": "off"
     }
   }
 }

@@ -10,8 +10,8 @@ const getOutputFileName = R.pipe(
 )
 
 const getOutputFileMeta = ( compilation ) => {
-    const outputFilename = getOutputFileName( compilation )
-    const asset = compilation.assets[ outputFilename ]
+    const outputFileName = getOutputFileName( compilation )
+    const asset = compilation.assets[ outputFileName ]
     const absoluteFileName = asset.existsAt
     const relativeFileName = path.relative( '', absoluteFileName )
 
