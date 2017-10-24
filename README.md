@@ -41,7 +41,7 @@ For example:
 
 ```javascript
 new NodemonPlugin({
-    /// Arguments to pass to the script being restarted
+    /// Arguments to pass to the script being watched
     args: ['demo'],
 
     // What to watch
@@ -52,6 +52,9 @@ new NodemonPlugin({
 
     // Detailed log
     verbose: true,
+
+    // Node arguments
+    nodeArgs: [ '--debug=9222' ]
 })
 ```
 
