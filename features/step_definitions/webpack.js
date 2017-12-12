@@ -12,4 +12,8 @@ defineSupportCode( function({ Given }) {
     Given( 'I run webpack in watch mode', function() {
         this.launchWebpack()
     })
+
+    Given( 'Ctrl-c has been pressed', function() {
+        this.simulateCtrlC()
+    })
 })

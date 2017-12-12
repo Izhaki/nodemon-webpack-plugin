@@ -29,6 +29,12 @@ defineSupportCode( function({ Before, After }) {
         }
     })
 
+    Before( function() {
+        this.simulateCtrlC = () => {
+            this.childProcess.kill( 'SIGINT' )
+        }
+    })
+
     After( function() {
         this.childProcess.kill( 'SIGINT' )
     })

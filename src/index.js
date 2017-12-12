@@ -41,11 +41,13 @@ module.exports = class {
 
         this.isNodemonRunning = true
 
-        // See https://github.com/JacksonGariety/gulp-nodemon/issues/77
-        process.on( 'SIGINT', () => {
-            monitor.once( 'exit', () => {
-                process.exit()
-            })
+        // Ensure we exit nodemon when webpack exists.
+        process.once( 'exit', () => {
+            monitor.emit( 'exit' )
+        })
+        // Ensure Ctrl-C triggers exit.
+        process.once( 'SIGINT', () => {
+            process.exit( 0 )
         })
     }
 }
