@@ -105,7 +105,7 @@
       "new-cap": "off",
       "prefer-arrow-callback": "off",
       "capitalized-comments": "off",
-      "unicorn/no-process-exit": "error",
+      "unicorn/no-process-exit": "off",
       "unicorn/filename-case": "off",
       "import/prefer-default-export": "off"
     }
