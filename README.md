@@ -41,20 +41,24 @@ For example:
 
 ```javascript
 new NodemonPlugin({
-    /// Arguments to pass to the script being watched
+    /// Arguments to pass to the script being watched.
     args: ['demo'],
 
-    // What to watch
+    // What to watch.
     watch: path.resolve('./dist'),
 
-    // Files to ignore
+    // Files to ignore.
     ignore: ['*.js.map'],
 
-    // Detailed log
+    // Detailed log.
     verbose: true,
 
-    // Node arguments
+    // Node arguments.
     nodeArgs: [ '--debug=9222' ]
+
+    // If using more than one entry, you can specify
+    // which output file will be restarted.
+    script: './dist/server.js'
 })
 ```
 

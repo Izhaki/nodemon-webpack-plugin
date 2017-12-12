@@ -58,15 +58,11 @@ module.exports = function () {
 
             this.isNodemonRunning = true;
 
-            // Ensure Ctrl-c stop nodemon.
-            // Based on https://github.com/JacksonGariety/gulp-nodemon/commit/8ee28a46a9f335d9babf0131fde29b646cc621c3
-            // Notes:
-            // - https://github.com/JacksonGariety/gulp-nodemon/issues/77 work on Mac but not Windows.
-            // - Not listening to SIGTERM, like https://github.com/webpack/webpack-dev-server/blob/93cb3dc600e6c547cec7580ace4bf4a56cf2fe98/bin/webpack-dev-server.js
-            // - Also consider https://github.com/sindresorhus/exit-hook
+            // Ensure we exit nodemon when webpack exists.
             process.once('exit', function () {
                 monitor.emit('exit');
             });
+            // Ensure Ctrl-C triggers exit.
             process.once('SIGINT', function () {
                 process.exit(0);
             });
