@@ -16,6 +16,29 @@ Saves the need for installing, configuring and running Nodemon as a seperate pro
 $ npm install nodemon-webpack-plugin --save-dev
 ```
 
+## Usage
+
+```javascript
+const NodemonPlugin = require( 'nodemon-webpack-plugin' )
+
+module.exports = {
+    entry: './src/server.js',
+    output: {
+        path: path.resolve('./dist'),
+        filename: 'server.js',
+    },
+    plugins: [
+        new NodemonPlugin(),
+    ],
+}
+```
+
+Then:
+
+```shell
+$ webpack --watch
+```
+
 ## Modes
 
 ### Zero-config mode
@@ -60,29 +83,6 @@ new NodemonPlugin({
     // which output file will be restarted.
     script: './dist/server.js'
 })
-```
-
-## Usage
-
-```javascript
-const NodemonPlugin = require( 'nodemon-webpack-plugin' )
-
-module.exports = {
-    entry: './src/server.js',
-    output: {
-        path: path.resolve('./dist'),
-        filename: 'server.js',
-    },
-    plugins: [
-        new NodemonPlugin(),
-    ],
-}
-```
-
-Then:
-
-```shell
-$ webpack --watch
 ```
 
 ## Example output
