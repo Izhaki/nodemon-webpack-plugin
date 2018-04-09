@@ -1,11 +1,11 @@
-import { defineSupportCode } from 'cucumber'
+import { defineSupportCode } from 'cucumber';
 
-defineSupportCode( function({ When }) {
-    When( 'the entry file is modified', function() {
-        this.renderEntryFile()
-    })
+defineSupportCode(({ When }) => {
+  When('the entry file is modified', function () {
+    this.renderEntryFile();
+  });
 
-    When( 'a file unrelated to the entry file is modified', function() {
-        this.renderUnrelatedFile()
-    })
-})
+  When('a file unrelated to the entry file is modified', function () {
+    this.renderUnrelatedFile();
+  });
+});

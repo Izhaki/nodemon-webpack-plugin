@@ -1,12 +1,12 @@
-import path from 'path'
-import { defineSupportCode } from 'cucumber'
-import uuid from 'uuid/v1'
-import fs from 'fs-extra'
-import Mustache from 'mustache'
+import path from 'path';
+import { defineSupportCode } from 'cucumber';
+import uuid from 'uuid/v1';
+import fs from 'fs-extra';
+import Mustache from 'mustache';
 
-export const webpackConfigFileName = 'webpack.config.js'
-const entryFileName = 'server.js'
-const unrelatedFileName = 'dist/config.json'
+export const webpackConfigFileName = 'webpack.config.js';
+const entryFileName = 'server.js';
+const unrelatedFileName = 'dist/config.json';
 
 const webpackConfigFileContents = `
 const path = require( 'path' )
@@ -23,7 +23,7 @@ const config = {
         __filename: false,
     },
 
-    entry: path.resolve( baseDir, '${ entryFileName }' ),
+    entry: path.resolve( baseDir, '${entryFileName}' ),
 
     externals: [ nodeExternals() ],
 
@@ -50,7 +50,7 @@ const config = {
 }
 
 module.exports = config
-`
+`;
 
 const entryFileContents = `
 const path = require( 'path' )
@@ -67,7 +67,7 @@ app.get( '/', ( req, res ) => {
 })
 
 app.listen( 3421 )
-`
+`;
 const unrelatedFileContents = `
 {
   "domain": "www.example.com",
@@ -77,34 +77,37 @@ const unrelatedFileContents = `
   },
   "sessionId": "{{ uuid }}"
 }
-`
+`;
 
-defineSupportCode( function({ Before }) {
-    Before( function() {
-        // Default context
-        this.context = {
-            nodemonPluginPath: path.resolve( 'dist' ),
-            outputFileName: 'server.js',
-            nodemonConfig: '',
-        }
-    })
+defineSupportCode(({ Before }) => {
+  Before(function () {
+    // Default context
+    this.context = {
+      nodemonPluginPath: path.resolve('dist'),
+      outputFileName: 'server.js',
+      nodemonConfig: '',
+    };
+  });
 
-    Before( function() {
-        const renderTemplate = ( fileName, template ) => {
-            this.context.uuid = uuid() // uuid is used to invalidate each file checksum
-            const outputFile = path.join( this.tmpDir, fileName )
-            const render = Mustache.render( template, this.context )
-            fs.outputFileSync( outputFile, render )
-        }
+  Before(function () {
+    const renderTemplate = (fileName, template) => {
+      this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
+      const outputFile = path.join(this.tmpDir, fileName);
+      const render = Mustache.render(template, this.context);
+      fs.outputFileSync(outputFile, render);
+    };
 
-        this.renderWebpackConfig = () => renderTemplate( webpackConfigFileName, webpackConfigFileContents )
-        this.renderEntryFile = () => renderTemplate( entryFileName, entryFileContents )
-        this.renderUnrelatedFile = () => renderTemplate( unrelatedFileName, unrelatedFileContents )
+    this.renderWebpackConfig = () => renderTemplate(
+      webpackConfigFileName,
+      webpackConfigFileContents,
+    );
+    this.renderEntryFile = () => renderTemplate(entryFileName, entryFileContents);
+    this.renderUnrelatedFile = () => renderTemplate(unrelatedFileName, unrelatedFileContents);
 
-        this.renderTemplates = () => {
-            this.renderWebpackConfig()
-            this.renderEntryFile()
-            this.renderUnrelatedFile()
-        }
-    })
-})
+    this.renderTemplates = () => {
+      this.renderWebpackConfig();
+      this.renderEntryFile();
+      this.renderUnrelatedFile();
+    };
+  });
+});

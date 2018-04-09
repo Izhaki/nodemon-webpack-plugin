@@ -1,0 +1,11 @@
+extends:
+  - airbnb-base
+
+rules:
+  guard-for-in: 'off'
+  func-names: 'off'
+  import/prefer-default-export: 'off'
+  import/no-extraneous-dependencies:
+  - error
+  - devDependencies:
+    - "./features/**/*.js"

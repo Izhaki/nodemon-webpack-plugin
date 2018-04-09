@@ -4,7 +4,7 @@
   "description": "A webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "xo",
+    "lint": "eslint .",
     "test": "cucumberjs",
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
@@ -46,6 +46,9 @@
     "babel-preset-env": "1.6.0",
     "child-process-promise": "2.2.1",
     "cucumber": "3.0.2",
+    "eslint": "4.9.0",
+    "eslint-config-airbnb-base": "lates",
+    "eslint-plugin-import": "2.7.0",
     "express": "4.15.3",
     "fs-extra": "4.0.2",
     "mustache": "2.3.0",
@@ -54,60 +57,6 @@
     "tmp": "^0.0.33",
     "uuid": "3.1.0",
     "webpack": "3.4.1",
-    "webpack-node-externals": "1.6.0",
-    "xo": "0.18.2"
-  },
-  "xo": {
-    "space": 4,
-    "semicolon": false,
-    "rules": {
-      "arrow-parens": [
-        "error",
-        "always"
-      ],
-      "space-in-parens": [
-        "error",
-        "always",
-        {
-          "exceptions": [
-            "{}"
-          ]
-        }
-      ],
-      "space-before-function-paren": [
-        "error",
-        "never"
-      ],
-      "object-curly-spacing": [
-        "error",
-        "always"
-      ],
-      "array-bracket-spacing": [
-        "error",
-        "always",
-        {
-          "objectsInArrays": false,
-          "arraysInArrays": false
-        }
-      ],
-      "computed-property-spacing": [
-        "error",
-        "always"
-      ],
-      "template-curly-spacing": [
-        "error",
-        "always"
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ],
-      "new-cap": "off",
-      "prefer-arrow-callback": "off",
-      "capitalized-comments": "off",
-      "unicorn/no-process-exit": "off",
-      "unicorn/filename-case": "off",
-      "import/prefer-default-export": "off"
-    }
+    "webpack-node-externals": "1.6.0"
   }
 }

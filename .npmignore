@@ -2,6 +2,9 @@
 .gitignore
 npm-debug.log
 .DS_Store
-.eslintrc
+.eslintignore
+.eslintrc.yml
 .editorconfig
 .babelrc
+.travis.yml
+.vscode
