@@ -13,18 +13,21 @@ module.exports = class {
     }
 
     apply( compiler ) {
-        compiler.plugin( 'after-emit', ( compilation, callback ) => {
+        const OnAfterEmit = ( compilation, callback ) => {
             if ( this.isWebpackWatching && !this.isNodemonRunning ) {
                 const { relativeFileName } = getOutputFileMeta( compilation )
                 this.startMonitoring( relativeFileName )
             }
             callback()
-        })
+        }
 
-        compiler.plugin( 'watch-run', ( compiler, callback ) => {
+        const onWatchRun = ( compiler, callback ) => {
             this.isWebpackWatching = true
             callback()
-        })
+        }
+
+        compiler.plugin( 'after-emit', OnAfterEmit )
+        compiler.plugin( 'watch-run', onWatchRun )
     }
 
     startMonitoring( relativeFileName ) {
