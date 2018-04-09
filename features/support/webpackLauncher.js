@@ -11,7 +11,7 @@ defineSupportCode( function({ Before, After }) {
             const webpackBin = path.relative( process.cwd(), path.join( 'node_modules', '.bin', 'webpack' ) )
             const configFilePath = path.join( this.tmpDir, webpackConfigFileName )
 
-            const promise = spawn( webpackBin, [ `--config`, configFilePath, `--watch` ], { capture: [ 'stderr' ] })
+            const promise = spawn( webpackBin, [ '--config', configFilePath, '--watch' ], { capture: [ 'stderr' ] })
 
             promise.then( function() {
                 console.log( '\nWebpack stopped' )
@@ -22,9 +22,14 @@ defineSupportCode( function({ Before, After }) {
 
             this.childProcess = promise.childProcess
             this.output = []
+            this.errors = []
             this.childProcess.stdout.on( 'data', ( data ) => {
                 console.log( data.toString() )
                 this.output.push( data.toString() )
+            })
+            this.childProcess.stderr.on( 'data', ( data ) => {
+                console.log( data.toString() )
+                this.errors.push( data.toString() )
             })
         }
     })
@@ -37,5 +42,8 @@ defineSupportCode( function({ Before, After }) {
 
     After( function() {
         this.childProcess.kill( 'SIGINT' )
+        if ( this.errors.length > 0 ) {
+            throw new Error( `Errors: ${ this.errors }` )
+        }
     })
 })
