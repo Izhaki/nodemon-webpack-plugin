@@ -18,6 +18,7 @@ const outputDir = path.resolve( baseDir, 'dist' )
 
 const config = {
     target: 'node',
+    mode: 'development',
     node: {
         __dirname: false,
         __filename: false,
