@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/Izhaki/nodemon-webpack-plugin.svg?branch=master)](https://travis-ci.org/Izhaki/nodemon-webpack-plugin)
 [![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
 [![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Izhaki/nodemon-webpack-plugin/master/LICENSE)
 
 Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file, but only when webpack is in watch mode (ie, `--watch`).
 
@@ -12,13 +11,17 @@ Saves the need for installing, configuring and running Nodemon as a seperate pro
 ## Installation
 
 ```shell
+// Webpack 4:
 $ npm install nodemon-webpack-plugin --save-dev
+
+// Webpack 3 or 2:
+$ npm install nodemon-webpack-plugin@3.x --save-dev
 ```
 
 ## Usage
 
 ```javascript
-const NodemonPlugin = require( 'nodemon-webpack-plugin' )
+const NodemonPlugin = require( 'nodemon-webpack-plugin' ) // Ding
 
 module.exports = {
     entry: './src/server.js',
@@ -27,7 +30,7 @@ module.exports = {
         filename: 'server.js',
     },
     plugins: [
-        new NodemonPlugin(),
+        new NodemonPlugin(), // Dong
     ],
 }
 ```
