@@ -7,6 +7,7 @@ import Mustache from 'mustache';
 export const webpackConfigFileName = 'webpack.config.js';
 const entryFileName = 'server.js';
 const unrelatedFileName = 'dist/config.json';
+let port = 3421;
 
 const webpackConfigFileContents = `
 const path = require( 'path' )
@@ -67,7 +68,7 @@ app.get( '/', ( req, res ) => {
     res.send( 'hello' +  '{{ uuid }}' )
 })
 
-app.listen( 3421 )
+app.listen( {{ port }} )
 `;
 const unrelatedFileContents = `
 {
@@ -93,6 +94,9 @@ defineSupportCode(({ Before }) => {
   Before(function () {
     const renderTemplate = (fileName, template) => {
       this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
+
+      // Sometimes builds fail due EADDRINUSE so increase the port for each test.
+      this.context.port = port++; // eslint-disable-line no-plusplus
       const outputFile = path.join(this.tmpDir, fileName);
       const render = Mustache.render(template, this.context);
       fs.outputFileSync(outputFile, render);
