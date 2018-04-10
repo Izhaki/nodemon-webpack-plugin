@@ -12,7 +12,7 @@ Saves the need for installing, configuring and running Nodemon as a seperate pro
 
 ```shell
 // Webpack 4:
-$ npm install nodemon-webpack-plugin --save-dev
+$ npm install nodemon-webpack-plugin@4.x --save-dev
 
 // Webpack 3 or 2:
 $ npm install nodemon-webpack-plugin@3.x --save-dev

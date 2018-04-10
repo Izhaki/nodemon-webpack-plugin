@@ -8,3 +8,5 @@ npm-debug.log
 .babelrc
 .travis.yml
 .vscode
+features/
+cucumber.js
