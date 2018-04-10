@@ -8,8 +8,7 @@
     "test": "cucumberjs",
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
-    "preversion": "npm test",
-    "version": "npm run build && git add -A dist",
+    "preversion": "npm run build && npm test && git add -A dist",
     "postversion": "git push && git push --tags && release"
   },
   "engines": {
