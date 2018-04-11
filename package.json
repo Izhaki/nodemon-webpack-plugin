@@ -9,7 +9,8 @@
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "preversion": "npm run build && npm test && git add -A dist",
-    "postversion": "git push && git push --tags && release"
+    "postversion": "git push && git push --tags && release",
+    "pub": "npm publish --tag next"
   },
   "engines": {
     "node": ">=6.11.5"
