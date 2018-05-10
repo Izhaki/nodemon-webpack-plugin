@@ -83,7 +83,8 @@ new NodemonPlugin({
 
     // If using more than one entry, you can specify
     // which output file will be restarted.
-    script: './dist/server.js'
+    script: './dist/server.js',
+    ext: 'js,njk,json'
 })
 ```
 
