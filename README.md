@@ -79,7 +79,7 @@ new NodemonPlugin({
     verbose: true,
 
     // Node arguments.
-    nodeArgs: [ '--debug=9222' ]
+    nodeArgs: [ '--inspect=3000' ]
 
     // If using more than one entry, you can specify
     // which output file will be restarted.
