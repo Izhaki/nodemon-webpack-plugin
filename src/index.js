@@ -35,7 +35,7 @@ module.exports = class {
       watch: relativeFileName,
     };
 
-    const nodemonOptions = R.merge(nodemonOptionsDefaults, this.nodemonOptions);
+    const nodemonOptions = typeof this.nodemonOptions === 'string' ? this.nodemonOptions : R.merge(nodemonOptionsDefaults, this.nodemonOptions);
 
     const monitor = nodemon(nodemonOptions);
 
