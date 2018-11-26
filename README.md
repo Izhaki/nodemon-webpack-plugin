@@ -12,10 +12,10 @@ Saves the need for installing, configuring and running Nodemon as a seperate pro
 
 ```bash
 # Webpack 4:
-npm install nodemon-webpack-plugin@next --save-dev
+npm install nodemon-webpack-plugin --save-dev
 
 # Webpack 3 or 2:
-npm install nodemon-webpack-plugin --save-dev
+npm install nodemon-webpack-plugin@3 --save-dev
 ```
 
 ## Usage
