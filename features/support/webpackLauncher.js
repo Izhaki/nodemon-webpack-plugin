@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import path from 'path';
 import { spawn } from 'child-process-promise';
+import kill  from 'tree-kill';
 import { Before, After } from 'cucumber';
 import { webpackConfigFileName } from './templates';
 
@@ -36,12 +37,12 @@ Before(function () {
 
 Before(function () {
   this.simulateCtrlC = () => {
-    this.childProcess.kill('SIGINT');
+    kill(this.childProcess.pid, 'SIGINT');
   };
 });
 
 After(function () {
-  this.childProcess.kill('SIGINT');
+  kill(this.childProcess.pid, 'SIGINT');
   if (this.errors.length > 0) {
     throw new Error(`Errors: ${this.errors}`);
   }
