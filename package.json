@@ -1,6 +1,6 @@
 {
   "name": "nodemon-webpack-plugin",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "A webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
   "scripts": {
