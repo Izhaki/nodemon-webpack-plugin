@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 import path from 'path';
 import { spawn } from 'child-process-promise';
-import kill  from 'tree-kill';
+import kill from 'tree-kill';
 import { Before, After } from 'cucumber';
 import { webpackConfigFileName } from './templates';
-
 
 Before(function () {
   this.launchWebpack = () => {
@@ -47,4 +46,3 @@ After(function () {
     throw new Error(`Errors: ${this.errors}`);
   }
 });
-

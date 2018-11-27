@@ -19,7 +19,6 @@ const symLinkNodeModules = (fromBaseDir, toBaseDir) => {
   });
 };
 
-
 Before(function () {
   const tmpObject = tmp.dirSync({ unsafeCleanup: true });
   this.tmpDir = fs.realpathSync(tmpObject.name);
@@ -27,4 +26,3 @@ Before(function () {
 
   symLinkNodeModules(projectPath, this.tmpDir);
 });
-

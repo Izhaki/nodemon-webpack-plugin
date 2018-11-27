@@ -24,4 +24,3 @@ Then('the server shouldn\'t restart', function () {
   return this.waitForOutputToContain('Server started')
     .then(reject, fulfill); // We invert the fulfill/reject logic here.
 });
-

@@ -15,4 +15,3 @@ Given('I run webpack in watch mode', function () {
 Given('Ctrl-c has been pressed', function () {
   this.simulateCtrlC();
 });
-
