@@ -1,5 +1,5 @@
 import path from 'path';
-import { defineSupportCode } from 'cucumber';
+import { Before } from 'cucumber';
 import uuid from 'uuid/v1';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
@@ -81,38 +81,37 @@ const unrelatedFileContents = `
 }
 `;
 
-defineSupportCode(({ Before }) => {
-  Before(function () {
-    // Default context
-    this.context = {
-      nodemonPluginPath: path.resolve('dist'),
-      outputFileName: 'server.js',
-      nodemonConfig: '',
-    };
-  });
-
-  Before(function () {
-    const renderTemplate = (fileName, template) => {
-      this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
-
-      // Sometimes builds fail due EADDRINUSE so increase the port for each test.
-      this.context.port = port++; // eslint-disable-line no-plusplus
-      const outputFile = path.join(this.tmpDir, fileName);
-      const render = Mustache.render(template, this.context);
-      fs.outputFileSync(outputFile, render);
-    };
-
-    this.renderWebpackConfig = () => renderTemplate(
-      webpackConfigFileName,
-      webpackConfigFileContents,
-    );
-    this.renderEntryFile = () => renderTemplate(entryFileName, entryFileContents);
-    this.renderUnrelatedFile = () => renderTemplate(unrelatedFileName, unrelatedFileContents);
-
-    this.renderTemplates = () => {
-      this.renderWebpackConfig();
-      this.renderEntryFile();
-      this.renderUnrelatedFile();
-    };
-  });
+Before(function () {
+  // Default context
+  this.context = {
+    nodemonPluginPath: path.resolve('dist'),
+    outputFileName: 'server.js',
+    nodemonConfig: '',
+  };
 });
+
+Before(function () {
+  const renderTemplate = (fileName, template) => {
+    this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
+
+    // Sometimes builds fail due EADDRINUSE so increase the port for each test.
+    this.context.port = port++; // eslint-disable-line no-plusplus
+    const outputFile = path.join(this.tmpDir, fileName);
+    const render = Mustache.render(template, this.context);
+    fs.outputFileSync(outputFile, render);
+  };
+
+  this.renderWebpackConfig = () => renderTemplate(
+    webpackConfigFileName,
+    webpackConfigFileContents,
+  );
+  this.renderEntryFile = () => renderTemplate(entryFileName, entryFileContents);
+  this.renderUnrelatedFile = () => renderTemplate(unrelatedFileName, unrelatedFileContents);
+
+  this.renderTemplates = () => {
+    this.renderWebpackConfig();
+    this.renderEntryFile();
+    this.renderUnrelatedFile();
+  };
+});
+
