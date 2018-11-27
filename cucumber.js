@@ -1,3 +1,5 @@
 module.exports = {
-  default: '--compiler js:babel-register',
+  default: [
+    '--require-module babel-register',
+  ],
 };

@@ -1,5 +1,5 @@
 import path from 'path';
-import { defineSupportCode } from 'cucumber';
+import { Before } from 'cucumber';
 import fs from 'fs-extra';
 import tmp from 'tmp';
 
@@ -19,12 +19,12 @@ const symLinkNodeModules = (fromBaseDir, toBaseDir) => {
   });
 };
 
-defineSupportCode(({ Before }) => {
-  Before(function () {
-    const tmpObject = tmp.dirSync({ unsafeCleanup: true });
-    this.tmpDir = fs.realpathSync(tmpObject.name);
-    // this.tmpDir = path.resolve( 'tmp' )
 
-    symLinkNodeModules(projectPath, this.tmpDir);
-  });
+Before(function () {
+  const tmpObject = tmp.dirSync({ unsafeCleanup: true });
+  this.tmpDir = fs.realpathSync(tmpObject.name);
+  // this.tmpDir = path.resolve( 'tmp' )
+
+  symLinkNodeModules(projectPath, this.tmpDir);
 });
+
