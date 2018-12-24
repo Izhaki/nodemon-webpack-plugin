@@ -4,6 +4,9 @@ import uuid from 'uuid/v1';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
 
+const webpackVersion = process.env.WEBPACK_VERSION;
+const mode = webpackVersion === '4' ? "mode: 'development'," : '';
+
 export const webpackConfigFileName = 'webpack.config.js';
 const entryFileName = 'server.js';
 const unrelatedFileName = 'dist/config.json';
@@ -19,7 +22,7 @@ const outputDir = path.resolve( baseDir, 'dist' )
 
 const config = {
     target: 'node',
-    mode: 'development',
+    ${mode}
     node: {
         __dirname: false,
         __filename: false,

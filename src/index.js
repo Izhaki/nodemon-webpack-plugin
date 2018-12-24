@@ -27,8 +27,13 @@ module.exports = class {
 
     const plugin = { name: 'nodemon-webpack-plugin"' };
 
-    compiler.hooks.afterEmit.tapAsync(plugin, OnAfterEmit);
-    compiler.hooks.watchRun.tapAsync(plugin, onWatchRun);
+    if (compiler.hooks) {
+      compiler.hooks.afterEmit.tapAsync(plugin, OnAfterEmit);
+      compiler.hooks.watchRun.tapAsync(plugin, onWatchRun);
+    } else {
+      compiler.plugin('after-emit', OnAfterEmit);
+      compiler.plugin('watch-run', onWatchRun);
+    }
   }
 
   startMonitoring(relativeFileName) {
