@@ -75,11 +75,11 @@ new NodemonPlugin({
     verbose: true,
 
     // Node arguments.
-    nodeArgs: [ '--debug=9222' ]
+    nodeArgs: [ '--debug=9222' ],
 
     // If using more than one entry, you can specify
     // which output file will be restarted.
-    script: './dist/server.js'
+    script: './dist/server.js',
 
     // Extensions to watch
     ext: 'js,njk,json'
