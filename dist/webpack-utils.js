@@ -1,6 +1,7 @@
-'use strict';
+"use strict";
 
 var path = require('path');
+
 var R = require('ramda');
 
 var isMapFile = R.endsWith('.map');
@@ -11,8 +12,10 @@ var getOutputFileMeta = function getOutputFileMeta(compilation) {
   var asset = compilation.assets[outputFileName];
   var absoluteFileName = asset.existsAt;
   var relativeFileName = path.relative('', absoluteFileName);
-
-  return { absoluteFileName, relativeFileName };
+  return {
+    absoluteFileName,
+    relativeFileName
+  };
 };
 
 module.exports = {

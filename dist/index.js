@@ -1,18 +1,22 @@
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+"use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/* eslint-disable no-console */
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/* eslint-disable no-console */
 var nodemon = require('nodemon');
+
 var R = require('ramda');
 
 var _require = require('./webpack-utils'),
     getOutputFileMeta = _require.getOutputFileMeta;
 
-module.exports = function () {
+module.exports =
+/*#__PURE__*/
+function () {
   function _class(nodemonOptions) {
     _classCallCheck(this, _class);
 
@@ -22,7 +26,7 @@ module.exports = function () {
   }
 
   _createClass(_class, [{
-    key: 'apply',
+    key: "apply",
     value: function apply(compiler) {
       var _this = this;
 
@@ -33,6 +37,7 @@ module.exports = function () {
 
           _this.startMonitoring(relativeFileName);
         }
+
         callback();
       };
 
@@ -41,7 +46,9 @@ module.exports = function () {
         callback();
       };
 
-      var plugin = { name: 'nodemon-webpack-plugin"' };
+      var plugin = {
+        name: 'nodemon-webpack-plugin"'
+      };
 
       if (compiler.hooks) {
         compiler.hooks.afterEmit.tapAsync(plugin, OnAfterEmit);
@@ -52,29 +59,24 @@ module.exports = function () {
       }
     }
   }, {
-    key: 'startMonitoring',
+    key: "startMonitoring",
     value: function startMonitoring(relativeFileName) {
       var nodemonOptionsDefaults = {
         script: relativeFileName,
         watch: relativeFileName
       };
-
       var nodemonOptions = R.merge(nodemonOptionsDefaults, this.nodemonOptions);
-
       var monitor = nodemon(nodemonOptions);
-
       monitor.on('log', function (_ref) {
         var colouredMessage = _ref.colour;
         return console.log(colouredMessage);
       });
+      this.isNodemonRunning = true; // Ensure we exit nodemon when webpack exists.
 
-      this.isNodemonRunning = true;
-
-      // Ensure we exit nodemon when webpack exists.
       process.once('exit', function () {
         monitor.emit('exit');
-      });
-      // Ensure Ctrl-C triggers exit.
+      }); // Ensure Ctrl-C triggers exit.
+
       process.once('SIGINT', function () {
         process.exit(0);
       });
