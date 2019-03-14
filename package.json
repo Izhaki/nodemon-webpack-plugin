@@ -37,34 +37,34 @@
   },
   "homepage": "https://github.com/Izhaki/nodemon-webpack-plugin.git",
   "dependencies": {
-    "nodemon": "1.18.9",
-    "ramda": "0.24.1"
+    "nodemon": "1.18.10",
+    "ramda": "0.26.1"
   },
   "peerDependencies": {
     "webpack": "4"
   },
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-core": "6.25.0",
-    "babel-loader": "7.1.4",
-    "babel-preset-env": "1.6.1",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-loader": "8.0.5",
+    "babel-preset-env": "1.7.0",
     "babel-register": "^6.26.0",
     "child-process-promise": "2.2.1",
     "cross-env": "^5.2.0",
-    "cucumber": "5.0.2",
-    "eslint": "5.9.0",
+    "cucumber": "5.1.0",
+    "eslint": "5.15.1",
     "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "2.14.0",
-    "express": "4.15.3",
-    "fs-extra": "4.0.2",
-    "mustache": "2.3.0",
-    "release": "3.1.7",
-    "rimraf": "2.6.1",
+    "eslint-plugin-import": "2.16.0",
+    "express": "4.16.4",
+    "fs-extra": "7.0.1",
+    "mustache": "3.0.1",
+    "release": "6.0.1",
+    "rimraf": "2.6.3",
     "tmp": "^0.0.33",
     "tree-kill": "^1.2.1",
-    "uuid": "3.1.0",
-    "webpack": "4.28.2",
+    "uuid": "3.3.2",
+    "webpack": "4.29.6",
     "webpack-cli": "^3.1.2",
-    "webpack-node-externals": "1.6.0"
+    "webpack-node-externals": "1.7.2"
   }
 }
