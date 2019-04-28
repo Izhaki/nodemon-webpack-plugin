@@ -21,15 +21,17 @@ Before(function () {
     });
 
     this.childProcess = promise.childProcess;
+
     this.output = [];
-    this.errors = [];
     this.childProcess.stdout.on('data', (data) => {
       console.log(data.toString());
       this.output.push(data.toString());
     });
+    // Note: As of https://github.com/webpack/webpack-cli/commit/6ded275ac50f80f4ea6b29bfcc676238b59322e2
+    // All webpack output is done using the error stream.
     this.childProcess.stderr.on('data', (data) => {
       console.log(data.toString());
-      this.errors.push(data.toString());
+      this.output.push(data.toString());
     });
   };
 });
@@ -42,7 +44,4 @@ Before(function () {
 
 After(function () {
   kill(this.childProcess.pid, 'SIGINT');
-  if (this.errors.length > 0) {
-    throw new Error(`Errors: ${this.errors}`);
-  }
 });
