@@ -51,7 +51,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "babel-loader": "8.0.5",
+    "babel-loader": "8.0.6",
     "child-process-promise": "2.2.1",
     "cross-env": "^5.2.0",
     "cucumber": "5.1.0",
