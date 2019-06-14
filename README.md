@@ -6,7 +6,7 @@
 
 Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file, but only when webpack is in watch mode (ie, `--watch`).
 
-Saves the need for installing, configuring and running Nodemon as a seperate process.
+Saves the need for installing, configuring and running Nodemon as a separate process.
 
 ## Installation
 
