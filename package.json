@@ -62,7 +62,7 @@
     "fs-extra": "8.1.0",
     "mustache": "3.0.1",
     "release": "6.0.1",
-    "rimraf": "2.7.0",
+    "rimraf": "2.7.1",
     "tmp": "^0.1.0",
     "tree-kill": "^1.2.1",
     "uuid": "3.3.2",
