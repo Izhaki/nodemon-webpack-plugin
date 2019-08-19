@@ -65,7 +65,7 @@
     "rimraf": "2.7.1",
     "tmp": "^0.1.0",
     "tree-kill": "^1.2.1",
-    "uuid": "3.3.2",
+    "uuid": "3.3.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "webpack-node-externals": "1.7.2"
