@@ -17,6 +17,7 @@ Before(function() {
         nodemonPluginPath: path.resolve('dist'),
         outputFileName: 'server.js',
         nodemonConfig: '',
+        loader: 'babel-loader',
     };
 });
 

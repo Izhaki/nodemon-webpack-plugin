@@ -13,9 +13,15 @@ module.exports = class {
 
     apply(compiler) {
         const OnAfterEmit = (compilation, callback) => {
-            if (this.isWebpackWatching && !this.isNodemonRunning) {
-                const { relativeFileName } = getOutputFileMeta(compilation);
-                this.startMonitoring(relativeFileName);
+            if (this.isWebpackWatching) {
+                if (compilation.errors.length > 0) {
+                    console.log(
+                        '[nodemon-webpack-plugin]: Compilation error, nodemon yet to start.'
+                    );
+                } else if (!this.isNodemonRunning) {
+                    const { relativeFileName } = getOutputFileMeta(compilation);
+                    this.startMonitoring(relativeFileName);
+                }
             }
             callback();
         };

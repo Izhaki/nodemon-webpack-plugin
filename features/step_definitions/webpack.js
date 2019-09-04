@@ -8,6 +8,10 @@ Given('the output filename is {string}', function(outputFileName) {
     this.context.outputFileName = outputFileName;
 });
 
+Given('a webpack configuration that yields an error', function() {
+    this.context.loader = 'missing-loader';
+});
+
 Given('I run webpack in watch mode', function() {
     this.launchWebpack();
 });

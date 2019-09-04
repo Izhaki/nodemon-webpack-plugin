@@ -11,6 +11,7 @@
     "test": "npm run test:webpack3 && npm run test:webpack4",
     "test:webpack3": "yarn add webpack@3.12.0 --dev && cross-env WEBPACK_VERSION=3 cucumber-js",
     "test:webpack4": "yarn add webpack@^4.39.1 --dev && cross-env WEBPACK_VERSION=4 cucumber-js",
+    "test:only": "cross-env WEBPACK_VERSION=4 cucumber-js --tags @only",
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "preversion": "npm run build && npm test &&  git add -A dist",
