@@ -1,11 +1,9 @@
 language: node_js
 jobs:
   include:
-    - stage: Build
+    - stage: Build and Test
       script:
         - yarn build
-    - stage: Test
-      script:
         - yarn test
     - stage: Release
       deploy:
