@@ -1,7 +1,22 @@
 language: node_js
 node_js:
   - '8.10.0'
-
+jobs:
+  include:
+    - stage: Build
+      script:
+        - yarn build
+    - stage: Test
+      script:
+        - yarn test
+    - stage: Release
+      deploy:
+        provider: npm
+        email: '$NPM_EMAIL'
+        api_key: '$NPM_TOKEN'
+        skip_cleanup: true
+        on:
+          tags: true
 branches:
   only:
     - master

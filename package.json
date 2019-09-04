@@ -14,9 +14,9 @@
     "test:only": "cross-env WEBPACK_VERSION=4 cucumber-js --tags @only",
     "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
-    "preversion": "npm run build && npm test &&  git add -A dist",
-    "postversion": "git push && git push --tags && release",
-    "pub": "npm publish",
+    "preversion": "npm run build && npm test",
+    "postversion": "git push && git push --tags",
+    "release": "release",
     "prettier:fix": "prettier '{**/,}*.{js,jsx,ts,tsx,json,scss,css,md,html,yaml,yml}' --ignore-path=.gitignore --write"
   },
   "engines": {
