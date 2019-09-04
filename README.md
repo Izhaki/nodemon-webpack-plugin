@@ -17,7 +17,7 @@ npm install nodemon-webpack-plugin --save-dev
 ## Usage
 
 ```javascript
-const NodemonPlugin = require( 'nodemon-webpack-plugin' ) // Ding
+const NodemonPlugin = require('nodemon-webpack-plugin'); // Ding
 
 module.exports = {
     entry: './src/server.js',
@@ -28,7 +28,7 @@ module.exports = {
     plugins: [
         new NodemonPlugin(), // Dong
     ],
-}
+};
 ```
 
 Then:
@@ -42,7 +42,7 @@ $ webpack --watch
 ### Zero-config mode
 
 ```javascript
-new NodemonPlugin()
+new NodemonPlugin();
 ```
 
 Only watches the output file.
@@ -75,15 +75,15 @@ new NodemonPlugin({
     verbose: true,
 
     // Node arguments.
-    nodeArgs: [ '--debug=9222' ],
+    nodeArgs: ['--debug=9222'],
 
     // If using more than one entry, you can specify
     // which output file will be restarted.
     script: './dist/server.js',
 
     // Extensions to watch
-    ext: 'js,njk,json'
-})
+    ext: 'js,njk,json',
+});
 ```
 
 ## Example output

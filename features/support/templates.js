@@ -84,36 +84,36 @@ const unrelatedFileContents = `
 }
 `;
 
-Before(function () {
-  // Default context
-  this.context = {
-    nodemonPluginPath: path.resolve('dist'),
-    outputFileName: 'server.js',
-    nodemonConfig: '',
-  };
+Before(function() {
+    // Default context
+    this.context = {
+        nodemonPluginPath: path.resolve('dist'),
+        outputFileName: 'server.js',
+        nodemonConfig: '',
+    };
 });
 
-Before(function () {
-  const renderTemplate = (fileName, template) => {
-    this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
+Before(function() {
+    const renderTemplate = (fileName, template) => {
+        this.context.uuid = uuid(); // uuid is used to invalidate each file checksum
 
-    // Sometimes builds fail due EADDRINUSE so increase the port for each test.
-    this.context.port = port++; // eslint-disable-line no-plusplus
-    const outputFile = path.join(this.tmpDir, fileName);
-    const render = Mustache.render(template, this.context);
-    fs.outputFileSync(outputFile, render);
-  };
+        // Sometimes builds fail due EADDRINUSE so increase the port for each test.
+        this.context.port = port++; // eslint-disable-line no-plusplus
+        const outputFile = path.join(this.tmpDir, fileName);
+        const render = Mustache.render(template, this.context);
+        fs.outputFileSync(outputFile, render);
+    };
 
-  this.renderWebpackConfig = () => renderTemplate(
-    webpackConfigFileName,
-    webpackConfigFileContents,
-  );
-  this.renderEntryFile = () => renderTemplate(entryFileName, entryFileContents);
-  this.renderUnrelatedFile = () => renderTemplate(unrelatedFileName, unrelatedFileContents);
+    this.renderWebpackConfig = () =>
+        renderTemplate(webpackConfigFileName, webpackConfigFileContents);
+    this.renderEntryFile = () =>
+        renderTemplate(entryFileName, entryFileContents);
+    this.renderUnrelatedFile = () =>
+        renderTemplate(unrelatedFileName, unrelatedFileContents);
 
-  this.renderTemplates = () => {
-    this.renderWebpackConfig();
-    this.renderEntryFile();
-    this.renderUnrelatedFile();
-  };
+    this.renderTemplates = () => {
+        this.renderWebpackConfig();
+        this.renderEntryFile();
+        this.renderUnrelatedFile();
+    };
 });

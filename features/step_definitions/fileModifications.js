@@ -1,9 +1,9 @@
 import { When } from 'cucumber';
 
-When('the entry file is modified', function () {
-  this.renderEntryFile();
+When('the entry file is modified', function() {
+    this.renderEntryFile();
 });
 
-When('a file unrelated to the entry file is modified', function () {
-  this.renderUnrelatedFile();
+When('a file unrelated to the entry file is modified', function() {
+    this.renderUnrelatedFile();
 });

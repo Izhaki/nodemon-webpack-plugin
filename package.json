@@ -15,7 +15,8 @@
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "preversion": "npm run build && npm test &&  git add -A dist",
     "postversion": "git push && git push --tags && release",
-    "pub": "npm publish"
+    "pub": "npm publish",
+    "prettier:fix": "prettier '{**/,}*.{js,jsx,ts,tsx,json,scss,css,md,html,yaml,yml}' --ignore-path=.gitignore --write"
   },
   "engines": {
     "node": ">=6.11.5"
@@ -57,10 +58,14 @@
     "cucumber": "5.1.0",
     "eslint": "6.3.0",
     "eslint-config-airbnb-base": "latest",
+    "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-import": "2.18.2",
     "express": "4.17.1",
     "fs-extra": "8.1.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "mustache": "3.0.3",
+    "prettier": "^1.18.2",
     "release": "6.0.1",
     "rimraf": "2.7.1",
     "tmp": "^0.1.0",
@@ -73,5 +78,16 @@
   "resolutions": {
     "**/lodash": "4.17.15",
     "**/request": "2.88.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,scss,css,md,html,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

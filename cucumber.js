@@ -1,5 +1,3 @@
 module.exports = {
-  default: [
-    '--require-module @babel/register',
-  ],
+    default: ['--require-module @babel/register'],
 };
