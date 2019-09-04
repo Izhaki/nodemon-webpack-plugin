@@ -3,86 +3,13 @@ import { Before } from 'cucumber';
 import uuid from 'uuid/v1';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
-
-const webpackVersion = process.env.WEBPACK_VERSION;
-const mode = webpackVersion === '4' ? "mode: 'development'," : '';
+import webpackConfigTpl from './templates/webpack.config';
+import entryTpl from './templates/entry';
+import unrelatedTpl from './templates/unrelated';
 
 export const webpackConfigFileName = 'webpack.config.js';
-const entryFileName = 'server.js';
 const unrelatedFileName = 'dist/config.json';
 let port = 3421;
-
-const webpackConfigFileContents = `
-const path = require( 'path' )
-const nodeExternals = require( 'webpack-node-externals' )
-const NodemonPlugin = require( '{{{ nodemonPluginPath }}}' )
-
-const baseDir = __dirname
-const outputDir = path.resolve( baseDir, 'dist' )
-
-const config = {
-    target: 'node',
-    ${mode}
-    node: {
-        __dirname: false,
-        __filename: false,
-    },
-
-    entry: path.resolve( baseDir, '${entryFileName}' ),
-
-    externals: [ nodeExternals() ],
-
-    output: {
-        path: outputDir,
-        filename: '{{{ outputFileName }}}',
-    },
-
-    module: {
-        rules: [{
-            test: /.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [ '@babel/preset-env' ],
-                },
-            },
-        }],
-    },
-    plugins: [
-        new NodemonPlugin({{{ nodemonConfig }}})
-    ],
-}
-
-module.exports = config
-`;
-
-const entryFileContents = `
-const path = require( 'path' )
-const express = require( 'express' )
-
-const app = express()
-
-const argv = process.argv.slice( 2 )
-
-console.log( 'Server started with argv:', argv )
-
-app.get( '/', ( req, res ) => {
-    res.send( 'hello' +  '{{ uuid }}' )
-})
-
-app.listen( {{ port }} )
-`;
-const unrelatedFileContents = `
-{
-  "domain": "www.example.com",
-  "mongodb": {
-    "host": "localhost",
-    "port": 27017
-  },
-  "sessionId": "{{ uuid }}"
-}
-`;
 
 Before(function() {
     // Default context
@@ -105,11 +32,10 @@ Before(function() {
     };
 
     this.renderWebpackConfig = () =>
-        renderTemplate(webpackConfigFileName, webpackConfigFileContents);
-    this.renderEntryFile = () =>
-        renderTemplate(entryFileName, entryFileContents);
+        renderTemplate(webpackConfigFileName, webpackConfigTpl);
+    this.renderEntryFile = () => renderTemplate('server.js', entryTpl);
     this.renderUnrelatedFile = () =>
-        renderTemplate(unrelatedFileName, unrelatedFileContents);
+        renderTemplate(unrelatedFileName, unrelatedTpl);
 
     this.renderTemplates = () => {
         this.renderWebpackConfig();
