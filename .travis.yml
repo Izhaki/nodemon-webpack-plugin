@@ -6,6 +6,7 @@ jobs:
         - yarn build
         - yarn test
     - stage: Release
+      script: yarn build
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
