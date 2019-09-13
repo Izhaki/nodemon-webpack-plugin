@@ -9,6 +9,7 @@ module.exports = class {
         this.nodemonOptions = nodemonOptions;
         this.isWebpackWatching = false;
         this.isNodemonRunning = false;
+        this.monitor = null;
     }
 
     apply(compiler) {
@@ -18,6 +19,11 @@ module.exports = class {
                     console.log(
                         '[nodemon-webpack-plugin]: Compilation error, nodemon yet to start.'
                     );
+
+                    // ensure server stops when compilation is broken
+                    if (this.monitor) {
+                        this.monitor.emit('exit');
+                    }
                 } else if (!this.isNodemonRunning) {
                     const { relativeFileName } = getOutputFileMeta(compilation);
                     this.startMonitoring(relativeFileName);
@@ -53,9 +59,9 @@ module.exports = class {
             this.nodemonOptions
         );
 
-        const monitor = nodemon(nodemonOptions);
+        this.monitor = nodemon(nodemonOptions);
 
-        monitor.on('log', ({ colour: colouredMessage }) =>
+        this.monitor.on('log', ({ colour: colouredMessage }) =>
             console.log(colouredMessage)
         );
 
@@ -63,7 +69,7 @@ module.exports = class {
 
         // Ensure we exit nodemon when webpack exists.
         process.once('exit', () => {
-            monitor.emit('exit');
+            this.monitor.emit('exit');
         });
         // Ensure Ctrl-C triggers exit.
         process.once('SIGINT', () => {
