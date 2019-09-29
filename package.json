@@ -57,7 +57,7 @@
     "child-process-promise": "2.2.1",
     "cross-env": "^6.0.0",
     "cucumber": "5.1.0",
-    "eslint": "6.4.0",
+    "eslint": "6.5.0",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-import": "2.18.2",
