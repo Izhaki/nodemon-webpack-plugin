@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/Izhaki/nodemon-webpack-plugin.svg?branch=master)](https://travis-ci.org/Izhaki/nodemon-webpack-plugin)
 [![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
-[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/) [![Greenkeeper badge](https://badges.greenkeeper.io/Izhaki/nodemon-webpack-plugin.svg)](https://greenkeeper.io/)
+[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/)  [![npm](https://img.shields.io/npm/dt/nodemon-webpack-plugin.svg)](https://www.npmjs.com/package/nodemon-webpack-plugin)
 
-Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file, but only when webpack is in watch mode (ie, `--watch`).
+Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file (presumably a server), but only when webpack is in watch mode (ie, `--watch`).
 
 Saves the need for installing, configuring and running Nodemon as a separate process.
 
