@@ -1,5 +1,5 @@
 const webpackVersion = process.env.WEBPACK_VERSION;
-const mode = webpackVersion === '4' ? "mode: 'development'," : '';
+const mode = webpackVersion === '3' ? '' : "mode: 'development',";
 
 export default `
 const path = require( 'path' )

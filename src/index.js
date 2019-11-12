@@ -19,8 +19,11 @@ module.exports = class {
                         '[nodemon-webpack-plugin]: Compilation error, nodemon yet to start.'
                     );
                 } else if (!this.isNodemonRunning) {
-                    const { relativeFileName } = getOutputFileMeta(compilation);
-                    this.startMonitoring(relativeFileName);
+                    const outputFile = getOutputFileMeta(
+                        compilation,
+                        compiler.outputPath
+                    );
+                    this.startMonitoring(outputFile);
                 }
             }
             callback();

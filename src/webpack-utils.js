@@ -9,13 +9,10 @@ const getOutputFileName = R.pipe(
     R.head
 );
 
-const getOutputFileMeta = compilation => {
+const getOutputFileMeta = (compilation, outputPath) => {
     const outputFileName = getOutputFileName(compilation);
-    const asset = compilation.assets[outputFileName];
-    const absoluteFileName = asset.existsAt;
-    const relativeFileName = path.relative('', absoluteFileName);
-
-    return { absoluteFileName, relativeFileName };
+    const absoluteFileName = path.join(outputPath, outputFileName);
+    return path.relative('', absoluteFileName);
 };
 
 module.exports = {
