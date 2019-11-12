@@ -15,9 +15,7 @@ module.exports = class {
         const OnAfterEmit = (compilation, callback) => {
             if (this.isWebpackWatching) {
                 if (compilation.errors.length > 0) {
-                    console.log(
-                        '[nodemon-webpack-plugin]: Compilation error, nodemon yet to start.'
-                    );
+                    console.log('[nodemon-webpack-plugin]: Compilation error.');
                 } else if (!this.isNodemonRunning) {
                     const outputFile = getOutputFileMeta(
                         compilation,
