@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Izhaki/nodemon-webpack-plugin.svg?branch=master)](https://travis-ci.org/Izhaki/nodemon-webpack-plugin)
 [![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
-[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/)  [![npm](https://img.shields.io/npm/dt/nodemon-webpack-plugin.svg)](https://www.npmjs.com/package/nodemon-webpack-plugin)
+[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/) [![npm](https://img.shields.io/npm/dt/nodemon-webpack-plugin.svg)](https://www.npmjs.com/package/nodemon-webpack-plugin)
 
 Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file (presumably a server), but only when webpack is in watch mode (ie, `--watch`).
 
@@ -89,13 +89,16 @@ new NodemonPlugin({
 ## Example output
 
 ```shell
-Hash: 366cbbbab13237b29593
-Version: webpack 3.4.1
-Time: 50ms
-    Asset     Size  Chunks             Chunk Names
-server.js  3.17 kB       0  [emitted]  main
-   [0] ./test/server.js 388 bytes {0} [built]
-    + 3 hidden modules
+Hash: 1c0ed85f7670873d6269
+Version: webpack 5.0.0-beta.4
+Time: 42ms
+Built at: 2019-11-12 23:51:57
+    Asset      Size
+server.js  2.41 KiB  [emitted]  [name: main]
+Entrypoint main = server.js
+./tmp/server.js 285 bytes [built]
+    + 2 hidden modules
+
 [nodemon] restarting due to changes...
-[nodemon] starting `node test/dist/server.js`
+[nodemon] starting `node tmp/dist/server.js`
 ```
