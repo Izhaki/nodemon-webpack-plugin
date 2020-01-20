@@ -66,7 +66,7 @@
     "fs-extra": "8.1.0",
     "husky": "^4.0.2",
     "lint-staged": "^9.2.5",
-    "mustache": "3.2.1",
+    "mustache": "4.0.0",
     "prettier": "^1.18.2",
     "release": "6.1.0",
     "rimraf": "2.7.1",
