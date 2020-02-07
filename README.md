@@ -1,5 +1,9 @@
 # Nodemon Webpack Plugin
 
+<p align="center">
+  <img width="100%" src="https://user-images.githubusercontent.com/880132/73990098-0a6ef580-4940-11ea-8df7-c93dda7edb4d.png" />
+</p>
+
 [![Build Status](https://travis-ci.org/Izhaki/nodemon-webpack-plugin.svg?branch=master)](https://travis-ci.org/Izhaki/nodemon-webpack-plugin)
 [![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
 [![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/) [![npm](https://img.shields.io/npm/dt/nodemon-webpack-plugin.svg)](https://www.npmjs.com/package/nodemon-webpack-plugin)
