@@ -4,9 +4,17 @@
   <img width="100%" src="https://user-images.githubusercontent.com/880132/73990098-0a6ef580-4940-11ea-8df7-c93dda7edb4d.png" />
 </p>
 
-[![Build Status](https://travis-ci.org/Izhaki/nodemon-webpack-plugin.svg?branch=master)](https://travis-ci.org/Izhaki/nodemon-webpack-plugin)
-[![NPM Version](https://badge.fury.io/js/nodemon-webpack-plugin.svg?style=flat)](https://npmjs.org/package/nodemon-webpack-plugin)
-[![Node version](https://img.shields.io/node/v/nodemon-webpack-plugin.svg?style=flat)](http://nodejs.org/download/) [![npm](https://img.shields.io/npm/dt/nodemon-webpack-plugin.svg)](https://www.npmjs.com/package/nodemon-webpack-plugin)
+<p align="center">
+  <a aria-label="Build" href="https://travis-ci.org/Izhaki/nodemon-webpack-plugin">
+    <img alt="Travis (.org)" src="https://img.shields.io/travis/Izhaki/nodemon-webpack-plugin?style=flat-square">
+  </a>
+  <a aria-label="NPM version" href="https://npmjs.org/package/nodemon-webpack-plugin">
+    <img alt="" src="https://img.shields.io/npm/v/nodemon-webpack-plugin?style=flat-square">
+  </a>
+  <a aria-label="Downloads" href="https://www.npmjs.com/package/nodemon-webpack-plugin">
+    <img alt="" src="https://img.shields.io/npm/dt/nodemon-webpack-plugin?style=flat-square">
+  </a>
+</p>
 
 Uses [Nodemon](https://nodemon.io/) to watch and restart your module's output file (presumably a server), but only when webpack is in watch mode (ie, `--watch`).
 
