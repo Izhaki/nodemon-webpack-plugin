@@ -69,7 +69,7 @@
     "mustache": "4.0.0",
     "prettier": "^1.18.2",
     "release": "6.1.0",
-    "rimraf": "3.0.1",
+    "rimraf": "3.0.2",
     "tmp": "^0.1.0",
     "tree-kill": "^1.2.1",
     "uuid": "3.3.3",
