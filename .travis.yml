@@ -1,4 +1,5 @@
 language: node_js
+version: 1.0
 jobs:
   include:
     - stage: Build and Test
@@ -8,6 +9,7 @@ jobs:
     - stage: Release
       script: yarn build
       deploy:
+        edge: true
         provider: npm
         email: '$NPM_EMAIL'
         api_key: '$NPM_TOKEN'
