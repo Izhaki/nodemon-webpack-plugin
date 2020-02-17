@@ -1,8 +1,9 @@
 {
   "name": "nodemon-webpack-plugin",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "description": "A webpack plugin that starts and reloads a server using Nodemon.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/"
   ],
@@ -13,7 +14,7 @@
     "test:webpack4": "yarn add webpack@^4.41.2 --dev && cross-env WEBPACK_VERSION=4 cucumber-js",
     "test:webpack5": "yarn add webpack@^5.0.0-beta.3 --dev && cross-env WEBPACK_VERSION=5 cucumber-js",
     "test:only": "cross-env WEBPACK_VERSION=4 cucumber-js --tags @only",
-    "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
+    "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/ && cp src/index.d.ts dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "preversion": "npm run build && npm test",
     "postversion": "git push && git push --tags",
@@ -54,6 +55,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
+    "@types/nodemon": "^1.19.0",
     "babel-loader": "8.0.6",
     "child-process-promise": "2.2.1",
     "cross-env": "^7.0.0",
@@ -72,6 +74,7 @@
     "rimraf": "3.0.2",
     "tmp": "^0.1.0",
     "tree-kill": "^1.2.1",
+    "typescript": "^3.7.5",
     "uuid": "3.3.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
