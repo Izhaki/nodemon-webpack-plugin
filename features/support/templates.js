@@ -7,7 +7,6 @@ import webpackConfigTpl from './templates/webpack.config';
 import entryTpl from './templates/entry';
 import unrelatedTpl from './templates/unrelated';
 
-export const webpackConfigFileName = 'webpack.config.js';
 const unrelatedFileName = 'dist/config.json';
 let port = 3421;
 
@@ -18,6 +17,8 @@ Before(function() {
         outputFileName: 'server.js',
         nodemonConfig: '',
         loader: 'babel-loader',
+        webpackConfigFileName: 'webpack.config.js',
+        isTypescript: false,
     };
 });
 
@@ -33,7 +34,7 @@ Before(function() {
     };
 
     this.renderWebpackConfig = () =>
-        renderTemplate(webpackConfigFileName, webpackConfigTpl);
+        renderTemplate(this.context.webpackConfigFileName, webpackConfigTpl);
     this.renderEntryFile = () => renderTemplate('server.js', entryTpl);
     this.renderUnrelatedFile = () =>
         renderTemplate(unrelatedFileName, unrelatedTpl);

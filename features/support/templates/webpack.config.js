@@ -4,7 +4,13 @@ const mode = webpackVersion === '3' ? '' : "mode: 'development',";
 export default `
 const path = require( 'path' )
 const nodeExternals = require( 'webpack-node-externals' )
+
+{{#isTypescript}}
+import NodemonPlugin from 'nodemon-webpack-plugin';
+{{/isTypescript}}
+{{^isTypescript}}
 const NodemonPlugin = require( '{{{ nodemonPluginPath }}}' )
+{{/isTypescript}}
 
 const baseDir = __dirname
 const outputDir = path.resolve( baseDir, 'dist' )

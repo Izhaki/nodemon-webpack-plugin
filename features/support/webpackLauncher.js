@@ -3,7 +3,6 @@ import path from 'path';
 import { spawn } from 'child-process-promise';
 import kill from 'tree-kill';
 import { Before, After } from 'cucumber';
-import { webpackConfigFileName } from './templates';
 
 Before(function() {
     this.launchWebpack = () => {
@@ -13,7 +12,10 @@ Before(function() {
             process.cwd(),
             path.join('node_modules', '.bin', 'webpack')
         );
-        const configFilePath = path.join(this.tmpDir, webpackConfigFileName);
+        const configFilePath = path.join(
+            this.tmpDir,
+            this.context.webpackConfigFileName
+        );
 
         const promise = spawn(
             webpackBin,
@@ -52,5 +54,7 @@ Before(function() {
 });
 
 After(function() {
-    kill(this.childProcess.pid, 'SIGINT');
+    if (this.childProcess) {
+        kill(this.childProcess.pid, 'SIGINT');
+    }
 });
