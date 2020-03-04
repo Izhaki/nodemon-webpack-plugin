@@ -1,8 +1,8 @@
 import path from 'path';
 import { Before } from 'cucumber';
-import uuid from 'uuid/v1';
 import fs from 'fs-extra';
 import Mustache from 'mustache';
+import uuid from './uuid';
 import webpackConfigTpl from './templates/webpack.config';
 import entryTpl from './templates/entry';
 import unrelatedTpl from './templates/unrelated';
