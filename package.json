@@ -63,7 +63,7 @@
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-import": "2.20.2",
     "express": "4.17.1",
     "fs-extra": "9.0.0",
     "husky": "^4.2.3",
