@@ -57,44 +57,39 @@ $ webpack --watch
 new NodemonPlugin();
 ```
 
-Only watches the output file.
+Will watch and restart the output file.
 
 ### With config
 
-Allows a [Nodemon config object](https://github.com/remy/nodemon#config-files) to override and extend the default config:
-
-```javascript
-{
-    script: outputFile,
-    watch:  outputFile,
-}
-```
-
-For example:
+Provide a [Nodemon config object](https://github.com/remy/nodemon#config-files), like so:
 
 ```javascript
 new NodemonPlugin({
-    /// Arguments to pass to the script being watched.
-    args: ['demo'],
-
-    // What to watch.
-    watch: path.resolve('./dist'),
-
-    // Files to ignore.
-    ignore: ['*.js.map'],
-
-    // Detailed log.
-    verbose: true,
-
-    // Node arguments.
-    nodeArgs: ['--debug=9222'],
-
     // If using more than one entry, you can specify
     // which output file will be restarted.
     script: './dist/server.js',
 
-    // Extensions to watch
+    // What to watch.
+    watch: path.resolve('./dist'),
+
+    // Arguments to pass to the script being watched.
+    args: ['demo'],
+
+    // Node arguments.
+    nodeArgs: ['--debug=9222'],
+
+    // Files to ignore.
+    ignore: ['*.js.map'],
+
+    // Extensions to watch.
     ext: 'js,njk,json',
+    
+    // Unlike the cli option, delay here is in milliseconds (also note that it's a string).
+    // Here's 1 second delay:
+    delay: "1000",
+
+    // Detailed log.
+    verbose: true,    
 });
 ```
 
