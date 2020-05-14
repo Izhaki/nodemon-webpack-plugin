@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/Izhaki/nodemon-webpack-plugin.git",
   "dependencies": {
-    "nodemon": "2.0.3",
+    "nodemon": "2.0.4",
     "ramda": "0.27.0"
   },
   "peerDependencies": {
