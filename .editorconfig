@@ -10,7 +10,7 @@ trim_trailing_whitespace = true
 indent_style = space
 
 [*.{js,md}]
-indent_size = 4
+indent_size = 2
 
 [{*.json,.babelrc}]
 indent_size = 2

@@ -32,14 +32,14 @@ npm install nodemon-webpack-plugin --save-dev
 const NodemonPlugin = require('nodemon-webpack-plugin'); // Ding
 
 module.exports = {
-    entry: './src/server.js',
-    output: {
-        path: path.resolve('./dist'),
-        filename: 'server.js',
-    },
-    plugins: [
-        new NodemonPlugin(), // Dong
-    ],
+  entry: './src/server.js',
+  output: {
+    path: path.resolve('./dist'),
+    filename: 'server.js',
+  },
+  plugins: [
+    new NodemonPlugin(), // Dong
+  ],
 };
 ```
 
@@ -65,31 +65,31 @@ Provide a [Nodemon config object](https://github.com/remy/nodemon#config-files),
 
 ```javascript
 new NodemonPlugin({
-    // If using more than one entry, you can specify
-    // which output file will be restarted.
-    script: './dist/server.js',
+  // If using more than one entry, you can specify
+  // which output file will be restarted.
+  script: './dist/server.js',
 
-    // What to watch.
-    watch: path.resolve('./dist'),
+  // What to watch.
+  watch: path.resolve('./dist'),
 
-    // Arguments to pass to the script being watched.
-    args: ['demo'],
+  // Arguments to pass to the script being watched.
+  args: ['demo'],
 
-    // Node arguments.
-    nodeArgs: ['--debug=9222'],
+  // Node arguments.
+  nodeArgs: ['--debug=9222'],
 
-    // Files to ignore.
-    ignore: ['*.js.map'],
+  // Files to ignore.
+  ignore: ['*.js.map'],
 
-    // Extensions to watch.
-    ext: 'js,njk,json',
-    
-    // Unlike the cli option, delay here is in milliseconds (also note that it's a string).
-    // Here's 1 second delay:
-    delay: "1000",
+  // Extensions to watch.
+  ext: 'js,njk,json',
 
-    // Detailed log.
-    verbose: true,    
+  // Unlike the cli option, delay here is in milliseconds (also note that it's a string).
+  // Here's 1 second delay:
+  delay: '1000',
+
+  // Detailed log.
+  verbose: true,
 });
 ```
 
