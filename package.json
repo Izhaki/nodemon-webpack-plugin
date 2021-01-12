@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run test:webpack3 && npm run test:webpack5 && npm run test:webpack4",
+    "test": "npm run test:webpack3 && npm run test:webpack4 && npm run test:webpack5",
     "test:webpack3": "yarn add webpack@3.12.0 --dev && cross-env WEBPACK_VERSION=3 cucumber-js",
     "test:webpack4": "yarn add webpack@^4.46.0 --dev && cross-env WEBPACK_VERSION=4 cucumber-js",
     "test:webpack5": "yarn add webpack@^5.13.0 --dev && cross-env WEBPACK_VERSION=5 cucumber-js",
