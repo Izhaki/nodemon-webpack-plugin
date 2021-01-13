@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a aria-label="Build" href="https://travis-ci.org/Izhaki/nodemon-webpack-plugin">
-    <img alt="Travis (.org)" src="https://img.shields.io/travis/Izhaki/nodemon-webpack-plugin?style=flat-square">
+  <a aria-label="Build" href="https://github.com/Izhaki/nodemon-webpack-plugin/actions?query=workflow%3ABuild">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Izhaki/nodemon-webpack-plugin/Build">
   </a>
   <a aria-label="NPM version" href="https://npmjs.org/package/nodemon-webpack-plugin">
     <img alt="" src="https://img.shields.io/npm/v/nodemon-webpack-plugin?style=flat-square">
