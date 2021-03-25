@@ -25,6 +25,7 @@ Before(function () {
       noEmit: true,
       target: ts.ScriptTarget.ES5,
       module: ts.ModuleKind.CommonJS,
+      esModuleInterop: true,
       // We use aliases to point to the package root - that way the types
       // are picked
       baseUrl,

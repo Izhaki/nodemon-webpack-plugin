@@ -1,4 +1,3 @@
-# Disabled as types are broken with WebPack 5
 Feature: Typescript support
 
     Scenario: A nodemon config that includes wrong setting type
