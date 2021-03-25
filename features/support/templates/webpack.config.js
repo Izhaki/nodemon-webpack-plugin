@@ -1,6 +1,3 @@
-const webpackVersion = process.env.WEBPACK_VERSION;
-const mode = webpackVersion === '3' ? '' : "mode: 'development',";
-
 export default `
 const path = require( 'path' )
 const nodeExternals = require( 'webpack-node-externals' )
@@ -17,7 +14,7 @@ const outputDir = path.resolve( baseDir, 'dist' )
 
 const config = {
     target: 'node',
-    ${mode}
+    mode: 'development',
     node: {
         __dirname: false,
         __filename: false,
