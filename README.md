@@ -90,22 +90,12 @@ new NodemonPlugin({
 
   // Detailed log.
   verbose: true,
+
+  // Environment variables to pass to the script to be restarted
+  env: {
+    NODE_ENV: 'development',
+  },
 });
 ```
 
-## Example output
-
-```shell
-Hash: 1c0ed85f7670873d6269
-Version: webpack 5.0.0-beta.4
-Time: 42ms
-Built at: 2019-11-12 23:51:57
-    Asset      Size
-server.js  2.41 KiB  [emitted]  [name: main]
-Entrypoint main = server.js
-./tmp/server.js 285 bytes [built]
-    + 2 hidden modules
-
-[nodemon] restarting due to changes...
-[nodemon] starting `node tmp/dist/server.js`
-```
+For a full list of options, see Nodemon's [type definitions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/nodemon/index.d.ts) (`Settings` interface).
