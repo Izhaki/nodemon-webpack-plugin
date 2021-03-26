@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import { Before, setDefaultTimeout } from 'cucumber';
 
 const ONE_SECOND = 1000;
@@ -20,13 +19,13 @@ Before(function () {
 
       function checkOutput() {
         // Note that we shift the output array here.
-        const getNextOutputBlock = () => R.defaultTo('', output.shift());
+        const getNextOutputBlock = () => output.shift() || '';
 
         let isFound = false;
 
         do {
-          isFound = R.contains(text, getNextOutputBlock());
-        } while (!isFound && !R.isEmpty(output));
+          isFound = getNextOutputBlock().includes(text);
+        } while (!isFound && output.length > 0);
 
         if (isFound) {
           clearInterval(intervalID);

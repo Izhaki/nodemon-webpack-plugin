@@ -1,13 +1,10 @@
 const path = require('path');
-const R = require('ramda');
 
-const isMapFile = R.endsWith('.map');
-const getOutputFileName = R.pipe(
-  R.prop('assets'),
-  R.keys,
-  R.reject(isMapFile),
-  R.head
-);
+const notMapFile = (file) => !file.endsWith('.map');
+
+// Returns the first assets that is not a map file
+const getOutputFileName = (compilation) =>
+  Object.keys(compilation.assets).filter(notMapFile)[0];
 
 const getOutputFileMeta = (compilation, outputPath) => {
   const outputFileName = getOutputFileName(compilation);
