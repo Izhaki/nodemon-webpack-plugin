@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/Izhaki/nodemon-webpack-plugin/compare/v4.7.1...v4.8.0) (2022-06-17)
+
+
+### Features
+
+* bump nodemon to 2.0.16 ([ae4d162](https://github.com/Izhaki/nodemon-webpack-plugin/commit/ae4d162e5284835c98c8ecb217ef2a3b978c8a18))
+
 ## [4.7.1](https://github.com/Izhaki/nodemon-webpack-plugin/compare/v4.7.0...v4.7.1) (2022-02-03)
 
 
