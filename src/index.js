@@ -46,6 +46,7 @@ module.exports = class {
     const nodemonOptionsDefaults = {
       script: relativeFileName,
       watch: relativeFileName,
+      signal: 'exit',
     };
 
     const nodemonOptions = {
