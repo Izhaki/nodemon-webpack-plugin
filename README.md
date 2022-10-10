@@ -91,6 +91,9 @@ new NodemonPlugin({
   // Detailed log.
   verbose: true,
 
+  // Hide "[nodemon-webpack-plugin]: Compilation error."
+  hideCompilationErrorMessage: false,
+
   // Environment variables to pass to the script to be restarted
   env: {
     NODE_ENV: 'development',

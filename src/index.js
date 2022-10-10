@@ -13,7 +13,7 @@ module.exports = class {
   apply(compiler) {
     const OnAfterEmit = (compilation, callback) => {
       if (this.isWebpackWatching) {
-        if (compilation.errors.length > 0) {
+        if (compilation.errors.length > 0 && !this.nodemonOptions.hideCompilationErrorMessage) {
           console.log('[nodemon-webpack-plugin]: Compilation error.');
         } else if (!this.isNodemonRunning) {
           const outputFile = getOutputFileMeta(
