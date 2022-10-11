@@ -4,7 +4,7 @@ const nodemon = require('nodemon');
 const { getOutputFileMeta } = require('./webpack-utils');
 
 module.exports = class {
-  constructor(nodemonOptions, webpackOptions) {
+  constructor(nodemonOptions, webpackOptions = {hideCompilationErrorMessage:false}) {
     this.nodemonOptions = nodemonOptions;
     this.webpackOptions = webpackOptions;
     this.isWebpackWatching = false;
