@@ -10,11 +10,11 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run test:webpack4 && npm run test:webpack5",
-    "test:webpack4": "yarn add webpack@^4.46.0 --dev && cucumber-js",
-    "test:webpack5": "yarn add webpack@^5.73.0 --dev && cucumber-js",
+    "test": "pnpm run test:webpack4 && npm run test:webpack5",
+    "test:webpack4": "pnpm add webpack@^4.46.0 --save-dev && cucumber-js",
+    "test:webpack5": "pnpm add webpack@^5.73.0 --save-dev && cucumber-js",
     "test:only": "cucumber-js --tags @only",
-    "build": "npm run lint && rimraf dist/ && babel src/ --out-dir dist/",
+    "build": "pnpm run lint && rimraf dist/ && babel src/ --out-dir dist/",
     "watch": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "prettier:fix": "prettier '{**/,}*.{js,jsx,ts,tsx,json,scss,css,md,html,yaml,yml}' --ignore-path=.gitignore --write",
     "semantic-release": "semantic-release"
@@ -76,7 +76,7 @@
     "tmp": "^0.2.1",
     "tree-kill": "^1.2.2",
     "typescript": "^4.7.4",
-    "webpack": "^5.73.0",
+    "webpack": "^5.89.0",
     "webpack-cli": "^4.3.1",
     "webpack-node-externals": "2.5.2"
   },
