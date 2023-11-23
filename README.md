@@ -95,6 +95,11 @@ new NodemonPlugin({
   env: {
     NODE_ENV: 'development',
   },
+},
+// Additional Plugin Options
+{
+  // Hide "[nodemon-webpack-plugin]: Compilation error."
+  hideCompilationErrorMessage: true,
 });
 ```
 
